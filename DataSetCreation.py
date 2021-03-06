@@ -32,3 +32,17 @@ def create_dataset(synopsis, batch_size, seq_len):
     target = np.zeros_like((tokens))
     target[:-1] = tokens[1:]
     target[-1] = tokens[0]
+
+    input_tok = np.reshape(tokens, (batch_size, -1))
+    target_tok = np.reshape(target, (batch_size, -1))
+
+    vocab_size = len(i2w)
+    return input_tok, target_tok, vocab_size, w2i, i2w
+
+
+def create_batches(input_tok, target_tok, batch_size, seq_len):
+
+    num_batches = np.prod(input_tok.shape)//(batch_size*seq_len)
+
+    for i in range(0, num_batches*seq_len, seq_len):
+        yield input_tok[:, i:i+seq_len], target_tok[:, i:i+seq_len]
