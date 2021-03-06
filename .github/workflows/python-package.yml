@@ -38,13 +38,13 @@ jobs:
         # Set strictness for lint [low, medium, high]
         strict: medium
         # Mypy options
-        mypy-options: medium
+        mypy-options: false
         # Pylint options
-        pylint-options: medium
+        pylint-options: true
         # Black options
-        black-options: medium
+        black-options: true
         # Isort options
-        isort-options: medium
+        isort-options: false
     - name: First interaction
       uses: actions/first-interaction@v1.1.0
       with:
