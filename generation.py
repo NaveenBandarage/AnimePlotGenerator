@@ -21,5 +21,3 @@ def inference(model,input_text,device,top_k=5,length = 100):
         pred,(h,c) = model(torch.tensor(choice,dtype=torch.long).view(1,-1).to(device),(h,c))
     return output
   
-  
-  # ============================================================================================================
