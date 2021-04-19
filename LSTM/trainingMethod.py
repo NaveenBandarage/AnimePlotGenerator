@@ -1,11 +1,11 @@
-def loss_fn(predicted,target):
+def lossFunction(predicted,target):
     loss = nn.CrossEntropyLoss()
     return loss(predicted,target)
 
 #====================================================================================================================================
 
 
-def train_fn(model,device,dataloader,optimizer):
+def trainingFunction(model,device,dataloader,optimizer):
     model.train()
     tk0 = tqdm(dataloader,position=0,leave=True,total = num_batches)
     train_loss = AverageMeter()  
@@ -22,7 +22,7 @@ def train_fn(model,device,dataloader,optimizer):
         pred,(hid_state,cell_state) = model(inp,(hid_state,cell_state))
         #print(pred.transpose(1,2).shape)
         
-        loss = loss_fn(pred.transpose(1,2),target)
+        loss = lossFunction(pred.transpose(1,2),target)
         
         hid_state = hid_state.detach()
         cell_state = cell_state.detach()
